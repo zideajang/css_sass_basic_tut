@@ -1,0 +1,16 @@
+$primaryColor: orangered;
+$secondaryColor: lightgreen;
+$mainMargin : 5px;
+$width:100%;
+$menu : "menu";
+
+body{
+    font-family: "microsoft YaHei";
+    background: $secondaryColor;
+    margin: 0px;
+    padding: 0px;
+    color:$primaryColor;
+    .#{$menu}{
+        color: white;
+    }
+}

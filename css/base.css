@@ -1,0 +1,82 @@
+html, body {
+  margin: 0;
+  background: lightcoral;
+  padding: 0;
+  font-family: "microsoft YaHei"; }
+
+.nav {
+  width: 100%;
+  box-sizing: border-box; }
+  .nav ul {
+    display: flex;
+    height: 48px;
+    list-style: none;
+    padding: 0; }
+    .nav ul li {
+      width: 40%;
+      background: deepskyblue;
+      color: white;
+      text-align: center;
+      line-height: 48px; }
+
+.container .btn-default {
+  background: lightgray;
+  color: black; }
+
+.container .btn-primary {
+  background: dodgerblue;
+  color: white; }
+
+.container .btn-block {
+  width: 100%; }
+
+.container .feature__title {
+  color: deepskyblue;
+  font-weight: 600;
+  font-size: 24px; }
+
+.container .feature__content {
+  color: white; }
+
+.container .feature-default {
+  color: white; }
+
+.container .feature-primar {
+  color: dodgerblue; }
+
+.container .feature-lager {
+  font-size: 16px; }
+
+.container .feature-small {
+  font-size: 10px; }
+
+.container .feature-borderradius {
+  background: mediumseagreen;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px; }
+
+.square {
+  width: 128px;
+  height: 128px;
+  background: pink;
+  margin: 25px auto;
+  box-shadow: 2px 2px 3px black; }
+
+h1 {
+  font-size: 2rem; }
+
+.col-6 {
+  width: 50%; }
+
+h2 {
+  margin: 0px auto; }
+
+h2 {
+  padding: 25px; }
+
+.btn {
+  background-color: lightgreen; }
+
+h2 {
+  color: #66c8ff; }

@@ -1,0 +1,8 @@
+body {
+  font-family: "microsoft YaHei";
+  background: lightgreen;
+  margin: 0px;
+  padding: 0px;
+  color: orangered; }
+  body .menu {
+    color: white; }

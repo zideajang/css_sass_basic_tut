@@ -1,0 +1,229 @@
+$primarycolor:lightcoral;
+$secondarycolor:deepskyblue;
+
+@mixin border-radius($radius:20px){
+    -webkit-border-radius:$radius;
+    -moz-border-radius:$radius;
+    border-radius: $radius;
+};
+@mixin createsquare($width:48px,$bgcolor:gray){
+    width: $width;
+    height: $width;
+    background: $bgcolor;
+    margin:25px auto;
+    box-shadow: 2px 2px 3px black;
+}
+@function remy($pxsize,$remyrate:16){
+    @return ($pxsize/$remyrate) + rem;
+}
+html,body{
+    margin: 0;
+    background: $primarycolor;
+    padding: 0;
+    font-family: "microsoft YaHei";
+}
+
+.nav{
+    width: 100%;
+    box-sizing: border-box;
+    ul{
+        display: flex;
+        height: 48px;
+        list-style: none;
+        padding: 0;
+        li{
+            width: 40%;
+            background: $secondarycolor;
+            color: white;
+            text-align: center;
+            line-height: 48px;
+        }
+    }
+}
+.container{
+    .btn{
+        &-default{
+            background: lightgray;
+            color:black
+        }
+        &-primary{
+            background: dodgerblue;
+            color:white;
+        }
+        &-block{
+            width: 100%;
+        }
+    }
+    .feature{
+        &__title{
+            color:deepskyblue;
+            font-weight: 600;
+            font-size: 24px;
+        }
+        &__content{
+            color: white;
+        }
+        &-default{
+            color:white;
+        }
+        &-primar{
+            color: dodgerblue;
+        }
+        &-lager{
+            font-size: 16px;
+        }
+        &-small{
+            font-size: 10px;
+        }
+        &-borderradius{
+            background: mediumseagreen;
+            @include border-radius();
+        }
+    }
+}
+
+.square{
+    @include createsquare(128px,pink);
+}
+
+//函数的作用
+
+
+h1{
+    font-size:remy(32);
+}
+//function 和 mixin 区别
+
+//创建一个函数
+$col-count: 12;
+
+@function col-pct($columns) {
+    @return unquote((100/$col-count)*$columns+"%");
+}
+
+.col-6 { width: col-pct(6);}
+h2{
+    margin: 0px auto;
+}
+//运算符
+// h2{
+//     font-size: 8px * 2;
+// }
+
+
+//运算操作符
+// h2 {
+//     font-size: 5px + 2em; // error incompatible units
+
+//     font-size: 5px + 2; // 7px
+// }
+// $base-size:16px;
+// $line-height:24px;
+// h2 {
+//     font-size: 16px / 24px; // Outputs as CSS
+
+//     font-size: (16px / 24px); // Uses parentheses, does division
+
+//     font-size: #{$base-size} / #{$line-height}; // Uses interpolation, outputs as CSS
+
+//     font-size: $base-size / $line-height ;// Uses variables, does division
+
+//     opacity: random(4) / 5; // Uses a function, does division
+//     padding-right: 2px / 4px + 3px // Uses an arithmetic expression, does division
+// }
+// h2 {
+//      width: 3px * 5 + 5px; // 20px
+
+//      width: 3 * (5px + 5px); // 30px
+
+//      width: 3px + (6px / 2) * 3; // 12px
+//  }
+// @mixin font-fl($font){
+//     &:after {
+//         @if(type-of($font) == string) {
+//             content: '使用字体: #{$font}.';
+//         } @else {
+//             content: '您输入字体 #{$font} 为 #{type-of($font)}.';
+//         }
+//     }
+// }
+// h2{
+//     @include font-fl("microsoft yahei");
+// }
+
+//相等运算符
+// $list: "tomato", "lime", "lightblue";
+
+// @mixin fg-color($property) {
+//     @each $item in $list {
+//         $color-length: str-length($item);
+//         @if( $color-length % 2 != 0 ) {
+//             #{$property}: unquote($item);
+//         }
+//     }
+// }
+
+// h2 {
+//     @include fg-color(color);
+// }
+
+//比较运算符
+
+$padding: 50px;
+
+h2 {
+    @if($padding <= 20px) {
+        padding: $padding;
+    } @else {
+        padding: $padding / 2;
+    }
+}
+
+//逻辑操作符 or and not
+$list-map: (success: lightgreen, alert: tomato, info: lightblue);
+
+@mixin button-state($btn-state) {
+    @if (length($list-map) > 2 or length($list-map) < 5) {
+        background-color: map-get($list-map, $btn-state);
+        
+    }
+}
+
+.btn {
+    @include button-state(success);
+}
+
+
+//字符串运算符
+// @mixin string-concat {
+//     &:after {
+//         content: "您正在使用语言 " + Sass;
+//         font: Arial + " sans-serif";
+//     }
+// }
+// @mixin string-concat ($language) {
+//     &:after {
+//         content: "My favorite language is #{$language}";
+
+//         // second way without using interpolation
+//         //content: "My favorite language is " + $language;
+//     }
+// }
+
+// h2 {
+//     @include string-concat;
+    
+// }
+
+// 颜色操作符
+// h2 {
+//     color: #468499 + #204479;
+// }
+//46+20=66 (red color), 84+44=c8 (green color), and 99+79=ff (blue color).
+//16进制 1-10 a,b,c,d,e,f
+h2 {
+    color: rgba(70, 132, 153, 1) + rgba(32, 68, 121, 1);
+
+    // error alpha channels must be equal
+    // color: rgba(70, 132, 153, .9) + rgba(32, 68, 121, .7);
+}
